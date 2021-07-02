@@ -22,10 +22,10 @@ module.exports = {
                 // '^/api': '',
               }
             },
-            // '/': {
-            //   target: 'http://fundgz.1234567.com.cn', //API服务器的地址
-            //   changeOrigin: true, // 是否跨域，虚拟的站点需要更管origin
-            // },
+            '/': {
+              target: 'http://fundgz.1234567.com.cn', //API服务器的地址
+              changeOrigin: true, // 是否跨域，虚拟的站点需要更管origin
+            },
 			// '/foo': {
 			// 	target: 'http://yd.abc.top'
 			// }

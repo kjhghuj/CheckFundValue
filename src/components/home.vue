@@ -111,13 +111,14 @@ export default {
   },
 
   mounted () {
+    //   30秒更新一次
       this.timer = setInterval(()=> {
           if (this.fundList.length > 0) {
               this.fundList.forEach((item, index) => {
                   this.getFundDetail(item, index)
               })
           }
-      }, 8000)
+      }, 30000)
       this.assetMoneyUpdate()
   },
   methods:{
@@ -176,24 +177,21 @@ export default {
     },
     // 获取单只基金详情
     getFundDetail (item, index) {
+        let time = new Date().getTime()
     axios({
-            baseURL: '/api',
-            // baseURL: 'http://fund.eastmoney.com',
+            baseURL: '/',
             method:'get',
-            url:'/pingzhongdata/'+ item.code +'.js',
-            // url:'/api/pingzhongdata/'+ item.code +'.js',
-            // url:'/js/001186.js',
+            url:'js/'+ item.code +'.js?rt=' + time,
             timeout: 1000,
             headers: {
                 "Server": 'NWS_TCloud_static_msoc2',
                 "Content-Type": 'application/x-javascript'
             }
     })
-    .then(response => {
-        let end = response.data.indexOf(']];/*累计收益率走势')
-        let start = response.data.lastIndexOf('equityReturn')
-        let data =  response.data.substring(start, end).split(',')[0].split(':')[1]
-        this.$set(this.fundList[index], 'value', data)
+    .then(res => {
+        let str = res.data.substring(8,res.data.length - 2)
+        let data = JSON.parse(str)
+        this.$set(this.fundList[index], 'value', data.gszzl)
     })
     },
     //   获取基金列表
