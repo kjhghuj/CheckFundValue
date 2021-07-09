@@ -69,6 +69,7 @@
 
 <script>
 import axios from 'axios'
+// import eruda from 'eruda'
 import { Dialog } from 'vant';
 
 export default {
@@ -104,13 +105,21 @@ export default {
   },
   created () {
     this.getAllFundList()
-    this.fundList = JSON.parse(localStorage.getItem("funklist"))
+    this.fundList = JSON.parse(localStorage.getItem("funklist")) || []
     this.fundList.forEach(item => {
         this.fundNameList.push(item.code)
     })
   },
 
   mounted () {
+    // let el = document.createElement('div');
+    // document.body.appendChild(el);
+
+    // eruda.init({
+    //     container: el,
+    //     tool: ['console', 'elements']
+    // });
+    // eruda.init()
     //   30秒更新一次
       this.timer = setInterval(()=> {
           if (this.fundList.length > 0) {
@@ -120,6 +129,7 @@ export default {
           }
       }, 30000)
       this.assetMoneyUpdate()
+      
   },
   methods:{
     //   搜索
@@ -178,11 +188,13 @@ export default {
     // 获取单只基金详情
     getFundDetail (item, index) {
         let time = new Date().getTime()
+        // http://8.129.120.231/apis/js/fundcode_search.js
     axios({
-            baseURL: '/',
+            baseURL: '/fund',
+            // baseURL: '/fund',
             method:'get',
-            url:'js/'+ item.code +'.js?rt=' + time,
-            timeout: 1000,
+            url:'/js/'+ item.code +'.js?rt=' + time,
+            // timeout: 1000,
             headers: {
                 "Server": 'NWS_TCloud_static_msoc2',
                 "Content-Type": 'application/x-javascript'
@@ -198,11 +210,11 @@ export default {
     getAllFundList () {
     // axios.get('/api/js/fundcode_search.js')
     axios({
-        baseURL: '/api',
+        baseURL: '/apis',
         // baseURL: 'http://fund.eastmoney.com',
         method:'get',
         url:'/js/fundcode_search.js',
-        timeout: 1000,
+        // timeout: 1000,
         headers: {
             "Server": 'NWS_TCloud_static_msoc2',
             "Content-Type": 'application/x-javascript'
