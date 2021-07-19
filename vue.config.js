@@ -1,6 +1,10 @@
 
 const CompressionPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
+const path = require('path');
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
 
 module.exports = {
     publicPath: './',
@@ -38,33 +42,12 @@ module.exports = {
         },
     },
     chainWebpack: (config) => {
-        // 修复HMR
-        // config.resolve.symlinks(true)
-    
-        // config.resolve.extensions.add('less')
-    
-        // 设置别名
-        // config.resolve.alias
-        //   .set('@', '/src')
-        //   .set('@utils', '/src/utils')
-    
-        // if (APP_ENV === 'production') {
-        //   config.optimization.minimizer('uglifyjs-webpack-plugin').use(
-        //     new UglifyjsWebpackPlugin({
-        //       uglifyOptions: {
-        //         sourceMap: false,
-        //         parallel: true,
-        //         warnings: false,
-        //         compress: {
-        //           drop_console: true,
-        //           drop_debugger: true,
-        //           pure_funcs: ['console.log']
-        //         }
-        //       }
-        //     })
-        //   )
-        // }
-        // config.plugin('webpack-bundle-analyzer').use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+      config.externals={
+        "echarts": "echarts",
+      }
+      config.resolve.alias
+        .set('@src', resolve('src'))
+        .set('@components', resolve('src/components'))
         plugins: [
             new CompressionPlugin({
                 algorithm: 'gzip', // 使用gzip压缩
