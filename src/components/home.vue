@@ -4,7 +4,7 @@
         left-icon="volume-o"
         background="rgb(16, 16, 22)"
         color="#00aeff"
-        text="建议不要超过十只鸡，怕你的垃圾手机卡死，你要是不信可以试试"
+        text="建议不要超过二十只基金，防止手机卡死的情况发生"
         />
       <div class="searchBox" v-if="showBox">
           <div class="content">
@@ -24,8 +24,6 @@
                   </div>
                   <div class="Tip" v-show="searchData.length < 1 && NoSearch"><van-empty description="请输入基金名称进行搜索" /></div>
                   <div class="Tip" v-show="searchData.length < 1 && !NoSearch"><van-empty description="没有这只基金哦" /></div>
-                  <!-- <div class="Tip" v-show="searchData.length < 1 && NoSearch">搜点东西吧。。<br>目前只支持使用基金名称进行搜索</div>
-                  <div class="Tip" v-show="searchData.length < 1 && !NoSearch">没有，搜不到，问就是打错字了，要不就接口炸了</div> -->
               </div>
               <van-loading type="spinner" class="loading" v-if="loading"/>
           </div>
@@ -77,9 +75,8 @@
 import axios from 'axios'
 // import eruda from 'eruda'
 import { Dialog } from 'vant';
-
 export default {
-  name: 'HelloWorld',
+  name: 'home',
   data() {
     return {
         isHidden:false,
@@ -119,7 +116,6 @@ export default {
         this.fundNameList.push(item.code)
     })
   },
-
   mounted () {
     //   先更新一下
       this.updataAllFund(true)
@@ -127,9 +123,6 @@ export default {
       this.timer = setInterval(()=> {
           this.updataAllFund()
       }, 30000)
-    //   更新持仓金额
-    //   this.assetMoneyUpdate()
-      
   },
   methods:{
     // 更新所有基金估值
@@ -141,7 +134,6 @@ export default {
                 } else {
                     this.getFundDetail(item, index)
                 }
-                
             })
         }
     },
@@ -200,11 +192,8 @@ export default {
             Dialog.alert({
                 title: '重复',
                 message: '这只鸡已经在你的鸡场里了',
-            }).then(() => {
-                
-            });
+            }).then(() => {});
         }
-
     },
     // 获取单只基金详情
     getFundDetail (item, index, isFirst) {
@@ -279,164 +268,6 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
-.loading {
-    z-index: 2;
-    width: 100% !important;
-    position: absolute;
-    align-items: center !important;
-    height: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    top: 0;
-    left: 0;
-    background: rgba(0,0,0,.4);
-}
-.up {
-    color: #ff7373;
-}
-.down {
-    color: #8eec9d;
-}
-.d-f-c {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.d-f-b {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.searchBox {
-    position: fixed;
-    top:0;left:0;right:0;bottom:0;
-    background:rgba(0, 0, 0, .3);
-    // background:rgba(255, 255, 255, .3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .content{
-        width: 80%;
-        height: 90%;
-        padding: 0.5rem;
-        background: #333333;
-        border-radius: 0.5rem;
-        div:first-child{
-            .d-f-b();
-            height: 1.8rem;
-        }
-        .searchInput {
-            display: block;
-            width:60%;
-            border: 1px solid rgb(177, 177, 177);
-            border-radius: 0.3rem;
-            height: 1.5rem;
-        }
-        .searchButton {
-            .d-f-c();
-            width: 19%;
-            border: none;
-            border-radius: 0.3rem;
-            height: 1.8rem;
-            margin-left: 1%;
-            background:#929292;
-        }
-        .list {
-            height: calc(100% - 2rem);
-            padding: 0 0.5rem;
-            overflow: auto;
-            .Tip {
-                color: #fff;
-                text-align: center;
-                width: 100%;
-                height: 30%;
-                font-size: 23px;
-            }
-            .listItem {
-                .d-f-b();
-                color: #fff;
-                background:#737373;
-                margin: 0.5rem 0;
-                padding: 0 0.5rem;
-                border-radius: 0.3rem;
-                // div:first-child {
-                //     width: 30%;
-                //     overflow: hidden; /* 溢出时不显示溢出的内容 */
-                //     text-overflow: ellipsis; /* 发生溢出时使用省略号代替 */
-                //     display: -webkit-box; /* chrome浏览器的私有属性。显示为box。 */
-                //     -webkit-box-orient: vertical; /* 垂直排列元素 */
-                //     -webkit-line-clamp: 1; /* 显示多少行 */
-                // }
-            }
-        }
-        .footer{
-            margin-top: 0.4rem;
-            .d-f-c();
-            button {
-                .searchButton();
-                margin-left:1rem;
-                color:#fff;
-            }
-        }
-    }
-}
-.sum {
-    font-size: 3rem;
-    display: flex;
-    height: 4.5rem;
-    justify-content: center;
-    align-items: center;
-}
-.home {
-    background:rgb(16, 16, 22);
-    user-select: none;
-}
-.header {
-    button{
-        width: 25%;
-        height: 2rem;
-        line-height: 2rem;
-        color:#fff;
-        background:rgb(16, 16, 22);
-        border:1px solid #757575 !important;
-        border-radius: 0.5rem;
-        margin-left:1rem;
-        border:none;
-    }
-}
-.fundItem {
-    background:rgb(60, 60, 61);
-    font-size: 14px;
-    height: 2rem;
-    line-height: 3rem;
-    border-radius: 0.5rem;
-    padding: 0.3rem 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1rem 0;
-    .moneyInput {
-        width: 3.2rem;
-        height: 1.5rem;
-        border-radius: 0.3rem;
-        border:none;
-    }
-    div:first-child {
-        color: rgb(216, 215, 215);
-        width: 30%;
-         overflow: hidden; /* 溢出时不显示溢出的内容 */
-        text-overflow: ellipsis; /* 发生溢出时使用省略号代替 */
-        display: -webkit-box; /* chrome浏览器的私有属性。显示为box。 */
-        -webkit-box-orient: vertical; /* 垂直排列元素 */
-        -webkit-line-clamp: 1; /* 显示多少行 */
-    }
-}
-.fundItemHeader {
-    .fundItem();
-    background:rgba(24, 20, 77, 0);
-    color: white;
-}
+@import url('./home.less');
 </style>
