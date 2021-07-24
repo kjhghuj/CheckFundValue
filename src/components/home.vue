@@ -64,7 +64,7 @@
               </div>
               <div :class="[item.value >= 0 ? 'up': 'down']">
                   {{item.value}}&nbsp;&nbsp;
-                  <span @click='delFund(item.name)'>
+                  <span @click.stop='delFund(item.name)'>
                     <svg t="1623331573314" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1171" width="12" height="12"><path d="M512 0C229.236364 0 0 229.236364 0 512s229.236364 512 512 512 512-229.236364 512-512v-0.698182C1023.627636 228.817455 794.530909 0 512 0z m219.229091 664.622545a47.872 47.872 0 1 1-65.908364 69.352728L512 577.931636l-153.320727 152.622546a49.058909 49.058909 0 0 1-69.352728-69.376l152.622546-153.320727-152.645818-152.622546a49.058909 49.058909 0 1 1 69.376-69.376L512 445.393455l153.320727-153.320728a47.872 47.872 0 0 1 65.908364 69.352728l-152.622546 152.66909 152.622546 150.528z" fill="#7d7d7d" p-id="1172"></path></svg>
                   </span>
               </div>
@@ -270,6 +270,7 @@ export default {
     },
     // 跳转详情
     goDetail(item) {
+        if(this.showEditMoney) return
         this.$router.push({
         name: 'Detail',
         query: item

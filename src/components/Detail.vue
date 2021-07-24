@@ -1,6 +1,12 @@
 <template>
-  <div class="warp">
+  <div class="warp" >
+    <div class="load" v-if="load">
+        <van-loading type="spinner" color="#1989fa" />
+    </div>
     <div id="chartBox"></div>
+    <!-- <div class="TimeButton" v-for="item in  ButtonData" :key="item.value">
+        <div @click="resetTime(item.value)">{{item.text}}</div>
+    </div> -->
   </div>
 </template>
 
@@ -11,7 +17,15 @@ export default {
   props: {},
   watch: {},
   data() {
-      return {}
+      return {
+          load: true,
+          ButtonData: [
+              { text:'近三月', value: '3'},
+              { text:'近六月', value: '6'},
+              { text:'近一年', value: '12'},
+              { text:'全部', value: 'all'},
+          ]
+      }
   },
   computed : {},
   created () {
@@ -38,6 +52,7 @@ export default {
                 let str = res.data.substring(start, end)
                 str = JSON.parse(str)
                 console.log(str)
+                this.load = false
                 this.setChart(str)
             })
       },
@@ -108,6 +123,18 @@ export default {
     #chartBox {
         width: 100%;
         height: 20rem;
+    }
+    .load {
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        background:rgba(0, 0, 0, .3);
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 0;
+        top: 0;
     }
 }
 </style>
