@@ -1,12 +1,12 @@
 <template>
-  <div class="warp">
-
+  <div class="BF">
+      制作中
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Detail',
+  name: 'isBlackFour',
   props: {},
   watch: {},
   data() {
@@ -14,12 +14,15 @@ export default {
   },
   computed : {},
   created () {},
-  mounted: {},
-  methods() {}
+  mounted () {},
+  methods :{}
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.BF {
+    font-size: 0.12rem;
+    color:wheat;
+}
 </style>

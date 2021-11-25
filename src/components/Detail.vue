@@ -19,7 +19,7 @@
     <div class="OtherFeature" v-for="(item, index) in featurList" :key='index'>
         <div class="title">{{item.title}}</div>
         <div class="FeatureContent">
-            制作中
+            <component :is="item.com"></component>
         </div>
     </div>
   </div>
@@ -27,21 +27,59 @@
 
 <script>
 import axios from 'axios'
+import isBlackFour from './Detail/isBlackFour'
+import JingZhi from './Detail/JingZhi'
+import ChiCan from './Detail/ChiCan'
+import ZouShi from './Detail/ZouShi'
+import JieShao from './Detail/JieShao'
+import PanDuan from './Detail/PanDuan'
+import JianYi from './Detail/JianYi'
 export default {
   name: 'Detail',
   props: {},
   watch: {},
+  components:{
+      isBlackFour,
+      JingZhi,
+      ChiCan,
+      ZouShi,
+      JieShao,
+      PanDuan,
+      JianYi,
+  },
   data() {
       return {
           FundName: '',
           load: true,
           featurList:[
-              {title:'历史业绩/净值'},
-              {title:'基金持仓分布'},
-              {title:'基金走势分析'},
-              {title:'基金经理介绍'},
-              {title:'AI涨跌判断'},
-              {title:'投资建议'}
+            {
+                title:'破除迷信',
+                com: isBlackFour
+            },
+            {
+                title:'历史业绩/净值',
+                com: JingZhi
+            },
+            {
+                title:'基金持仓分布',
+                com: ChiCan
+            },
+            {
+                title:'基金走势分析',
+                com: ZouShi
+            },
+            {
+                title:'基金经理介绍',
+                com: JieShao
+            },
+            {
+                title:'AI涨跌判断',
+                com: PanDuan
+            },
+            {
+                title:'投资建议',
+                com: JianYi
+            }
           ],
           ButtonData: [
               { text:'近三月', value: '3'},

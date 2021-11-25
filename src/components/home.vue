@@ -40,7 +40,7 @@
           </span>
       </div>
       <div class="header">
-          <button @click="showBox = true">添加基金</button>
+          <button @click="showBox = true;searchData = []">添加基金</button>
           <button @click="saveMoney(true)" v-if="showEditMoney === false">设置金额</button>
           <button @click="saveMoney(false)" v-else>保存金额</button>
           <button @click="updataAllFund()">立即获取</button>
@@ -111,6 +111,7 @@ export default {
   },
   created () {
     this.getAllFundList()
+    // 先从本地拿缓存数据
     this.fundList = JSON.parse(localStorage.getItem("funklist")) || []
     this.fundList.forEach(item => {
         this.fundNameList.push(item.code)
@@ -119,7 +120,7 @@ export default {
   mounted () {
     //   先更新一下
       this.updataAllFund(true)
-    //   然后30秒更新一次
+    //   然后30秒更新一次(轮询)
       this.timer = setInterval(()=> {
           this.updataAllFund()
       }, 30000)
@@ -146,7 +147,7 @@ export default {
         setTimeout(()=>{
             let arr = []
             this.AllFunkData.forEach(item => {
-                if (item[2].indexOf(this.searchValue) != -1) {
+                if (item[2].indexOf(this.searchValue) != -1 || item[0].indexOf(this.searchValue) != -1 ) {
                     arr.push(item)
                 }
             })
@@ -162,7 +163,7 @@ export default {
             this.fundList.forEach(item => {
                 item['count'] = (item.money/item.dwjz).toFixed(2)
             })
-            console.log(this.fundList)
+            // console.log(this.fundList)
             localStorage.setItem("funklist", JSON.stringify(this.fundList));
         }
     },
@@ -210,13 +211,12 @@ export default {
         .then(res => {
             let str = res.data.substring(8,res.data.length - 2)
             let data = JSON.parse(str)
-            // console.log(data)
             this.$set(this.fundList[index], 'value', data.gszzl)
             this.$set(this.fundList[index], 'dwjz', data.dwjz)
             // 如果是第一次，更新持仓金额
             if (isFirst) {
                 // 利用份额计算持仓
-                let m = data.dwjz * item.count
+                let m = data.dwjz * (item.count ? item.count : 0)
                 this.$set(this.fundList[index], 'money', m.toFixed(2))
             }
         })
@@ -234,6 +234,7 @@ export default {
         })
         .then( (response) => {
             this.AllFunkData = eval(response.data.substring(8))
+            console.log(this.AllFunkData)
         })
         .catch( (error) => {
             console.log(error);
