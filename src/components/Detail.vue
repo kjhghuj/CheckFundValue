@@ -19,7 +19,7 @@
     <div class="OtherFeature" v-for="(item, index) in featurList" :key='index'>
         <div class="title">{{item.title}}</div>
         <div class="FeatureContent">
-            <component :is="item.com"></component>
+            <component :is="item.com" :data="item.data"></component>
         </div>
     </div>
   </div>
@@ -53,8 +53,9 @@ export default {
           load: true,
           featurList:[
             {
-                title:'破除迷信',
-                com: isBlackFour
+                title:'是否黑色星期四',
+                com: isBlackFour,
+                data:[]
             },
             {
                 title:'历史业绩/净值',
@@ -125,6 +126,7 @@ export default {
                     item.value = item.y
                     return item
                 })
+                this.$set(this.featurList[0],'data',this.chartData)
                 this.setChart(this.chartData)
             })
       },

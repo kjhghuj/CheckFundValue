@@ -20,7 +20,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang='less' scoped>
 .ChiCan {
     font-size: 0.12rem;
     color:wheat;

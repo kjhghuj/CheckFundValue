@@ -1,21 +1,21 @@
 # fund
 
-## Project setup
+## 下载后安装依赖
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 安装依赖运行开发环境
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 开发完成后打包
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### 修复
 ```
 npm run lint
 ```

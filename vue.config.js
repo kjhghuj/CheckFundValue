@@ -48,7 +48,7 @@ module.exports = {
       config.resolve.alias
         .set('@src', resolve('src'))
         .set('@components', resolve('src/components'))
-        plugins: [
+        [
             new CompressionPlugin({
                 algorithm: 'gzip', // 使用gzip压缩
                 test: /\.js$|\.html$|\.css$/, // 匹配文件名
