@@ -4,7 +4,7 @@
         left-icon="volume-o"
         background="rgb(16, 16, 22)"
         color="#00aeff"
-        text="建议不要超过二十只基金，防止手机卡死的情况发生"
+        text="阿甘出品"
         />
       <div class="searchBox" v-if="showBox">
           <div class="content">
