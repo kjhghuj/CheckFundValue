@@ -66,7 +66,7 @@ export default {
                 com: ChiCan
             },
             {
-                title:'基金走势分析',
+                title:'基金走势历史周期对比分析',
                 com: ZouShi
             },
             {

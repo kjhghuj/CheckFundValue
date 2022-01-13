@@ -12,11 +12,11 @@ module.exports = {
     assetsDir: '', //静态资源目录（js, css, img）
     // lintOnSave: false, //是否开启eslint
     devServer: {
-        open: false, //是否自动弹出浏览器页面
+        open: true, //是否自动弹出浏览器页面
         host: "localhost", //表示启动的时候使用的域名，默认可以不写，则是使用localhost和本机IP
         port: '8081', // 设置端口号
         https: false,  //是否使用https协议
-        hotOnly: false, //是否开启热更新
+        hotOnly: true, //是否开启热更新
         proxy: {
             '/apis': {
               target: 'http://fund.eastmoney.com', //API服务器的地址
@@ -47,6 +47,7 @@ module.exports = {
       }
       config.resolve.alias
         .set('@src', resolve('src'))
+        .set('@utils', resolve('src/utils/utils.js'))
         .set('@components', resolve('src/components'))
       if (process.env.NODE_ENV === 'prod') {
         config.plugin("CompressionPlugin").use(
@@ -56,7 +57,7 @@ module.exports = {
               filename: '[path].gz[query]', // 压缩后的文件名(保持原文件名，后缀加.gz)
               minRatio: 1, // 压缩率小于1才会压缩
               threshold: 10240, // 对超过10k的数据压缩
-              deleteOriginalAssets: true, // 是否删除未压缩的源文件，谨慎设置，如果希望提供非gzip的资源，可不设置或者设置为false（比如删除打包后的gz后还可以加载到原始资源文件）
+              deleteOriginalAssets: false, // 是否删除未压缩的源文件，谨慎设置，如果希望提供非gzip的资源，可不设置或者设置为false（比如删除打包后的gz后还可以加载到原始资源文件）
           })
         )
       }
