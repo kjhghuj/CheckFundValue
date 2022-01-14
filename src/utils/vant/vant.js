@@ -84,7 +84,7 @@ import {
   // TabbarItem,
   // Tabs,
   // Tag,
-  // Toast,
+  Toast,
   // TreeSelect,
   // Uploader
 } from 'vant'
@@ -173,7 +173,7 @@ const components = [
   // TabbarItem,
   // Tabs,
   // Tag,
-  // Toast,
+  Toast,
   // TreeSelect,
   // Uploader
 ]

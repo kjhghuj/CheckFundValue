@@ -67,7 +67,8 @@ export default {
             },
             {
                 title:'基金走势历史周期对比分析',
-                com: ZouShi
+                com: ZouShi,
+                data: []
             },
             {
                 title:'基金经理介绍',
@@ -127,6 +128,7 @@ export default {
                     return item
                 })
                 this.$set(this.featurList[0],'data',this.chartData)
+                this.$set(this.featurList[3],'data',this.chartData)
                 this.setChart(this.chartData)
             })
       },
