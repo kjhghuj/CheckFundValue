@@ -13,6 +13,14 @@ const routes = [
       component: () => import('@components/home')
     },
     {
+      path: '/pic',
+      name: 'pic',
+      meta: {
+        title: 'pic'
+      },
+      component: () => import('@components/pic')
+    },
+    {
       path: '/Detail',
       name: 'Detail',
       meta: {

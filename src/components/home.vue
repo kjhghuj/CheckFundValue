@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+      <div style="width: 100px" @click="toPic">toPIc</div>
     <van-notice-bar
         left-icon="volume-o"
         background="rgb(16, 16, 22)"
@@ -265,6 +266,11 @@ export default {
         name: 'Detail',
         query: item
       })
+    },
+    toPic() {
+        this.$router.push({
+            name:'pic'
+        })
     }
   }
 }
