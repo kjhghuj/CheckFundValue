@@ -77,9 +77,9 @@ export default {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            top: 9.0rem;
+            top: 8.0rem;
             font-size:22px;
-            font-weight: 600;
+            font-weight: 400;
             color: #000;
             font-family: auto;
             .Address {
@@ -94,10 +94,10 @@ export default {
         }
         .topTime{
             position: absolute;
-            top: 10.90rem;
-            left: 10.02rem;
+            top: 10.15rem;
+            left: 9.4rem;
             font-size:14.3px;
-            font-weight: 500;
+            font-weight: 400;
             background: #fff;
             color: #8a8989;
             font-family: auto;
@@ -105,11 +105,11 @@ export default {
         .bottomTime {
             position: absolute;
             color: #fff;
-            left: 3.7rem;
-            bottom:20.8rem;
+            left: 3.5rem;
+            bottom:19.5rem;
             font-family: auto;
             font-size:11.5px;
-            background:linear-gradient(#018c0d, #00870a);
+            background:linear-gradient(#004fd7, #0140d3);
             // background:#098316;
             padding: 0 10px;
         }

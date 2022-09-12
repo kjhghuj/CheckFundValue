@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-      <!-- <div style="width: 100px" @click="toPic">toPIc</div> -->
+      <div style="width: 100px" @click="toPic">toPIc</div>
     <van-notice-bar
         left-icon="volume-o"
         background="rgb(16, 16, 22)"
