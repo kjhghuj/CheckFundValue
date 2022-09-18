@@ -5,14 +5,14 @@ npm run build
 
 echo "开始连接服务器"
 
-ssh kjhghuj@8.129.120.231 "cd /usr/share/nginx/html/dist;rm -r *;"
+ssh root@8.129.120.231 "cd /usr/share/nginx/html/dist;rm -r *;"
 
 echo "连接服务器成功"
 
 # 密码： Kk19950903
 echo "执行上传部署包，请输入密码"
 
-scp -r ./dist/* kjhghuj@8.129.120.231:/usr/share/nginx/html/dist
+scp -r ./dist/* root@8.129.120.231:/usr/share/nginx/html/dist
 
 # nginx -s reload
 

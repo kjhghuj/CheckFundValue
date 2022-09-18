@@ -106,7 +106,7 @@ export default {
             position: absolute;
             color: #fff;
             left: 3.5rem;
-            bottom:19.5rem;
+            bottom:19.3rem;
             font-family: auto;
             font-size:11.5px;
             background:linear-gradient(#004fd7, #0140d3);
